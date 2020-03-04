@@ -1,37 +1,50 @@
-## Welcome to GitHub Pages
+# ifak*FAST* Mediator
 
-You can use the [editor on GitHub](https://github.com/ifakFAST/ifakFAST-www/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+## Modular platform for process monitoring and supervisory control
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The [ifak*FAST*](https://fast.ifak.eu/) Mediator enables the composition and integration of modules that provide specific functionality for generic automation needs including data acquisition, visualization, alarm management and control. It can be used to build SCADA-like applications by combining generic modules like data acquisition with application specific modules, e.g. for asset management or online sensor quality evaluation.
 
-### Markdown
+The Mediator core is responsible for supervision and integration of the modules and provides time series data management and role-based rights management. Higher-level functionality needs to be provided by modules. A module is a software component with a specific configuration model (typically in form of an XML file) that defines a set of variables. A variable represents a runtime changing value with timestamp and quality, e.g. a measurement or set-point. A module may read and write variables and the configuration of other modules and may provide specific services for use by other modules.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Running the Mediator requires [.Net Core 3.1](https://www.microsoft.com/net/download). Future versions of the Mediator will allow for creating modules with Java.
 
-```markdown
-Syntax highlighted code block
+The Mediator core and all generic modules in this repository are licensed under the MIT License. We offer [professional support](https://fast.ifak.eu/contact) for development and customization of ifak*FAST* based solutions.
 
-# Header 1
-## Header 2
-### Header 3
+## Available generic modules
 
-- Bulleted
-- List
+### Module **IO**
 
-1. Numbered
-2. List
+* Used for signal-based data acquisition, e.g. via OPC DA
+* Extensible through adapters for different protocols
+* Configuration of scheduling and historization
 
-**Bold** and _Italic_ and `Code` text
+### Module **Dashboard**
 
-[Link](url) and ![Image](src)
-```
+* Provides a web-based dashboard for visualization and interaction
+* A dashboard consists of a set of customizable views, e.g. for IO and alarms and events
+* Extensible by providing your own views in form of single-page web apps
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Module **EventLog**
 
-### Jekyll Themes
+* Used for management of events (like warnings and alarms) that are sent by modules
+* Enables the acknowledgement and reset of warnings and alarms
+* Enables notifications to users, e.g. by e-mail
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ifakFAST/ifakFAST-www/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Module **Simba# Control** (not part of open-source distribution)
 
-### Support or Contact
+* Enables model-based supervisory control solutions
+* Define control model by flow-based diagrams with [SIMBA#](https://simba.ifak.eu/)
+* Evaluate control solution by integrated simulation of process and control model
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Quick Start
+1. Get the [latest release](https://github.com/ifakFAST/Mediator.Net/releases/latest)
+2. Unzip
+3. Run: Either start *Run.bat* on Windows or type *sh Run.bat* on Linux
+4. Navigte to http://localhost:8082/ using the browser
+5. Login with user name and password, for default values see ReadMe.txt
+
+## Further documentation
+* IO adapter implementation for custom data sources: [HowTo_AdapterIO](./Doc/HowTo_AdapterIO.md)
+* Module implementation for application logic: [HowTo_Modules](./Doc/HowTo_Modules.md)
+* Dashboard view implementation for application specific user interfaces: [HowTo_DashboardViews](./Doc/HowTo_DashboardViews.md)
+* [ifak*FAST* website](https://fast.ifak.eu)

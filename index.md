@@ -8,7 +8,7 @@ The Mediator core is responsible for supervision and integration of the modules 
 
 Running the Mediator requires [.Net Core 3.1](https://www.microsoft.com/net/download). Future versions of the Mediator will allow for creating modules with Java.
 
-The Mediator core and all generic modules in this repository are licensed under the MIT License. We offer [professional support](fast@ifak.eu) for development and customization of ifak*FAST* based solutions.
+The Mediator core and all generic modules in this repository are licensed under the MIT License. We offer [professional support](mailto:fast@ifak.eu) for development and customization of ifak*FAST* based solutions.
 
 ## Available generic modules
 

@@ -45,4 +45,6 @@ The Mediator core and all generic modules in this repository are licensed under 
 * Module implementation for application logic: [HowTo_Modules](https://github.com/ifakFAST/Mediator.Net/blob/master/Doc/HowTo_Modules.md)
 * Dashboard view implementation for application specific user interfaces: [HowTo_DashboardViews](https://github.com/ifakFAST/Mediator.Net/blob/master/Doc/HowTo_DashboardViews.md)
 
-© ifak e.V., [Impressum – Legal Notice](https://www.ifak.eu/en/imprint)
+© [ifak e.V.](https://www.ifak.eu/) 
+
+[Impressum – Legal Notice](https://www.ifak.eu/en/imprint)

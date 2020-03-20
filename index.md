@@ -2,19 +2,19 @@
 
 ## Modular platform for process monitoring and supervisory control
 
-The [ifak*FAST*](https://fast.ifak.eu/) Mediator enables the composition and integration of modules that provide specific functionality for generic automation needs including data acquisition, visualization, alarm management and control. It can be used to build SCADA-like applications by combining generic modules like data acquisition with application specific modules, e.g. for asset management or online sensor quality evaluation.
+The ifak*FAST* Mediator enables the composition and integration of modules that provide specific functionality for generic automation needs including data acquisition, visualization, alarm management and control. It can be used to build SCADA-like applications by combining generic modules like data acquisition with application specific modules, e.g. for asset management or online sensor quality evaluation.
 
 The Mediator core is responsible for supervision and integration of the modules and provides time series data management and role-based rights management. Higher-level functionality needs to be provided by modules. A module is a software component with a specific configuration model (typically in form of an XML file) that defines a set of variables. A variable represents a runtime changing value with timestamp and quality, e.g. a measurement or set-point. A module may read and write variables and the configuration of other modules and may provide specific services for use by other modules.
 
 Running the Mediator requires [.Net Core 3.1](https://www.microsoft.com/net/download). Future versions of the Mediator will allow for creating modules with Java.
 
-The Mediator core and all generic modules in this repository are licensed under the MIT License. We offer [professional support](https://fast.ifak.eu/contact) for development and customization of ifak*FAST* based solutions.
+The Mediator core and all generic modules in this repository are licensed under the MIT License. We offer [professional support](fast@ifak.eu) for development and customization of ifak*FAST* based solutions.
 
 ## Available generic modules
 
 ### Module **IO**
 
-* Used for signal-based data acquisition, e.g. via OPC DA
+* Used for signal-based data acquisition, e.g. via OPC DA or OPC UA
 * Extensible through adapters for different protocols
 * Configuration of scheduling and historization
 
@@ -44,7 +44,6 @@ The Mediator core and all generic modules in this repository are licensed under 
 5. Login with user name and password, for default values see ReadMe.txt
 
 ## Further documentation
-* IO adapter implementation for custom data sources: [HowTo_AdapterIO](./Doc/HowTo_AdapterIO.md)
-* Module implementation for application logic: [HowTo_Modules](./Doc/HowTo_Modules.md)
-* Dashboard view implementation for application specific user interfaces: [HowTo_DashboardViews](./Doc/HowTo_DashboardViews.md)
-* [ifak*FAST* website](https://fast.ifak.eu)
+* IO adapter implementation for custom data sources: [HowTo_AdapterIO](https://github.com/ifakFAST/Mediator.Net/blob/master/Doc/HowTo_AdapterIO.md)
+* Module implementation for application logic: [HowTo_Modules](https://github.com/ifakFAST/Mediator.Net/blob/master/Doc/HowTo_Modules.md)
+* Dashboard view implementation for application specific user interfaces: [HowTo_DashboardViews](https://github.com/ifakFAST/Mediator.Net/blob/master/Doc/HowTo_DashboardViews.md)

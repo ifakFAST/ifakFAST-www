@@ -1,6 +1,3 @@
-# ifak*FAST* Mediator
-
-## Modular platform for process monitoring and supervisory control
 
 The ifak*FAST* Mediator enables the composition and integration of modules that provide specific functionality for generic automation needs including data acquisition, visualization, alarm management and control. It can be used to build SCADA-like applications by combining generic modules like data acquisition with application specific modules, e.g. for asset management or online sensor quality evaluation.
 
@@ -10,40 +7,42 @@ Running the Mediator requires [.Net Core 3.1](https://www.microsoft.com/net/down
 
 The Mediator core and all generic modules in this repository are licensed under the MIT License. We offer [professional support](mailto:fast@ifak.eu) for development and customization of ifak*FAST* based solutions.
 
-## Available generic modules
+# Available generic modules
 
-### Module **IO**
+## Module **IO**
 
 * Used for signal-based data acquisition, e.g. via OPC DA or OPC UA
 * Extensible through adapters for different protocols
 * Configuration of scheduling and historization
 
-### Module **Dashboard**
+## Module **Dashboard**
 
 * Provides a web-based dashboard for visualization and interaction
 * A dashboard consists of a set of customizable views, e.g. for IO and alarms and events
 * Extensible by providing your own views in form of single-page web apps
 
-### Module **EventLog**
+## Module **EventLog**
 
 * Used for management of events (like warnings and alarms) that are sent by modules
 * Enables the acknowledgement and reset of warnings and alarms
 * Enables notifications to users, e.g. by e-mail
 
-### Module **Simba# Control** (not part of open-source distribution)
+## Module **Simba# Control** (not part of open-source distribution)
 
 * Enables model-based supervisory control solutions
 * Define control model by flow-based diagrams with [SIMBA#](https://simba.ifak.eu/)
 * Evaluate control solution by integrated simulation of process and control model
 
-## Quick Start
+# Quick Start
 1. Get the [latest release](https://github.com/ifakFAST/Mediator.Net/releases/latest)
 2. Unzip
 3. Run: Either start *Run.bat* on Windows or type *sh Run.bat* on Linux
 4. Navigte to http://localhost:8082/ using the browser
 5. Login with user name and password, for default values see ReadMe.txt
 
-## Further documentation
+# Further documentation
 * IO adapter implementation for custom data sources: [HowTo_AdapterIO](https://github.com/ifakFAST/Mediator.Net/blob/master/Doc/HowTo_AdapterIO.md)
 * Module implementation for application logic: [HowTo_Modules](https://github.com/ifakFAST/Mediator.Net/blob/master/Doc/HowTo_Modules.md)
 * Dashboard view implementation for application specific user interfaces: [HowTo_DashboardViews](https://github.com/ifakFAST/Mediator.Net/blob/master/Doc/HowTo_DashboardViews.md)
+
+© ifak e.V. |  [Impressum – Legal Notice](https://www.ifak.eu/en/imprint)

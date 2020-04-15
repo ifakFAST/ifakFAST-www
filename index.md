@@ -37,7 +37,7 @@ The Mediator core and all generic modules in this repository are licensed under 
 1. Get the [latest release](https://github.com/ifakFAST/Mediator.Net/releases/latest)
 2. Unzip
 3. Run: Either start *Run.bat* on Windows or type *sh Run.bat* on Linux
-4. Navigte to http://localhost:8082/ using the browser
+4. Navigate to http://localhost:8082/ using the browser
 5. Login with user name and password, for default values see ReadMe.txt
 
 # Further documentation

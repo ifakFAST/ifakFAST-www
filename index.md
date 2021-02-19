@@ -27,10 +27,10 @@ The Mediator core and all generic modules in this repository are licensed under 
 * Enables the acknowledgement and reset of warnings and alarms
 * Enables notifications to users, e.g. by e-mail
 
-## Module **Simba# Control** (not part of open-source distribution)
-
+## Module **Calculation**
+* Define cyclic calculations, e.g. for control or key-performance-indicator calculation
+* Two types of calculation available: C# scripts and [SIMBA#](https://simba.ifak.eu/)
 * Enables model-based supervisory control solutions
-* Define control model by flow-based diagrams with [SIMBA#](https://simba.ifak.eu/)
 * Evaluate control solution by integrated simulation of process and control model
 
 # Quick Start
@@ -45,6 +45,6 @@ The Mediator core and all generic modules in this repository are licensed under 
 * Module implementation for application logic: [HowTo_Modules](https://github.com/ifakFAST/Mediator.Net/blob/master/Doc/HowTo_Modules.md)
 * Dashboard view implementation for application specific user interfaces: [HowTo_DashboardViews](https://github.com/ifakFAST/Mediator.Net/blob/master/Doc/HowTo_DashboardViews.md)
 
-© [ifak e.V.](https://www.ifak.eu/) 
+© [ifak e.V.](https://www.ifak.eu/)
 
 [Impressum – Legal Notice](https://www.ifak.eu/en/imprint)

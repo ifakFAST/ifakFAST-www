@@ -11,7 +11,7 @@ The Mediator core and all generic modules in this repository are licensed under 
 
 ## Module **IO**
 
-* Used for signal-based data acquisition, e.g. via OPC DA, OPC UA, ModbusTCP, SQL, MQTT
+* Used for signal-based data acquisition, e.g. via OPC DA, [OPC UA](IOAdapter_OPC_UA.md), ModbusTCP, SQL, MQTT
 * Extensible through adapters for different protocols
 * Configuration of scheduling and historization
 

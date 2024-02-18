@@ -1,6 +1,6 @@
 # OPC UA adapter
 
-Configuration settings for ifakFAST OPC UA adapter:
+## Configuration settings for OPC UA adapter:
 
 * **Type**: OPC UA
 * **Address**: opc.tcp://hostname:port/
@@ -27,3 +27,10 @@ Configuration settings for ifakFAST OPC UA adapter:
 * Optional: **ExcludeUnderscoreNodes** - defaults to true which means that tags that have a name starting with an underscore character, will be excluded when browsing for tags.
 
 ![Screenshot of OPC UA adapter configuration](UA.png)
+
+## Configuring DataItems
+
+When adding DataItems to the OPC UA adapter, you can use the **Browse** button next to the **Address** property to view all tags provided by the OPC UA server. When the address space of the OPC UA server is very large, it may take several minutes on first opening the Browse dialog. 
+In the root folder of the ifakFAST installation, a file called "Browse_OPC_UA.txt" is stored containing all browsed tag addresses.
+
+![Screenshot of Browse dialog](UA_Browse.png)

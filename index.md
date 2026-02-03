@@ -3,7 +3,7 @@ The [ifak*FAST* Mediator](ifakFAST.pdf) enables the composition and integration 
 
 The Mediator core is responsible for supervision and integration of the modules and provides time series data management and role-based rights management. Higher-level functionality needs to be provided by modules. A module is a software component with a specific configuration model (typically in form of an XML file) that defines a set of variables. A variable represents a runtime changing value with timestamp and quality, e.g. a measurement or set-point. A module may read and write variables and the configuration of other modules and may provide specific services for use by other modules.
 
-Running the generic Mediator distribution requires that [.Net 8](https://dotnet.microsoft.com) has been installed. Platform specific distributions for Windows x64 and Linux x64 are provided that do not require a .Net runtime installation.
+Running the generic Mediator distribution requires that [.NET 10](https://dotnet.microsoft.com) has been installed. Platform specific distributions for Windows x64 and Linux x64 are provided that do not require a .NET runtime installation.
 
 The Mediator core and all generic modules in this repository are licensed under the MIT License. We offer [professional support](https://www.ifak-ts.com/#kontakt) for development and customization of ifak*FAST* based solutions.
 
@@ -29,9 +29,18 @@ The Mediator core and all generic modules in this repository are licensed under 
 
 ## Module **Calculation**
 * Define cyclic calculations, e.g. for control or key-performance-indicator calculation
-* Two types of calculation available: C# scripts and [SIMBA#](https://simba.ifak.eu/)
+* Two types of calculation available: C# scripts, Python scripts, and [SIMBA#](https://simba.ifak.eu/)
 * Enables model-based supervisory control solutions
 * Evaluate control solution by integrated simulation of process and control model
+
+## Module **Publish**
+* Publish variable values and histories to external systems
+* Supports cyclic publishing and event-driven publishing
+* Includes MQTT and OPC UA publishing options
+
+## Module **TagMetaData**
+* Manage tag metadata and relationships
+* Includes a visual editor for tag models and block libraries
 
 # Quick Start
 1. Get the [latest release](https://github.com/ifakFAST/Mediator.Net/releases/latest)

@@ -20,17 +20,28 @@
   - Aes256_Sha256_RsaPss
 
   If you use the value "Any", then the most secure communication policy supported by the OPC UA server will be used automatically.
-* Optional: **PkiDir** - You can specify a specific folder for storing the ifakFAST Mediator certificate, e.g. "./Config/OPC_UA_PKI". Otherwise, C:\\Users\\{UserName\}\\AppData\\Local\\ifakFAST.IO.OPC_UA will be used on Windows.
+* Optional: **PkiDir** - You can specify a specific folder for storing the ifakFAST Mediator certificate, e.g. "./Config/OPC_UA_PKI". Otherwise, C:\\Users\\{UserName\}\\AppData\\Local\\ifakFAST.IO.OPC_UA\\pki will be used on Windows. The client certificate is stored under `PkiDir\\own\\certs`.
+* Optional: **ValidateRemoteCertificates** - defaults to "false". If set to "true", remote server certificates must be trusted in the local PKI store. If "false", remote certificates are accepted automatically.
 * Optional: **LogLevel** - If you have trouble connecting, you may want to set the LogLevel to "Debug" or even "Trace". You can find the logged information in folder "Data\Logfile.log".
-* Optional: **Timeout** - defaults to 15 seconds. You may want to increase this value, if the downstream communication of the OPC UA server is very slow.
-* Optional: **MaxAge** - defaults to 0 seconds which means that on every read request from the OPC UA client to the OPC UA server, the server will try to get a new value from the downstream device or data source. If the value is larger than 0 seconds then a cached value may be returned if it is not older than MaxAge.
+* Optional: **Timeout** - defaults to 15 seconds. You may want to increase this value if the downstream communication of the OPC UA server is very slow. The value is a `Duration` and can be specified in any of these formats: `15 s`, `2 min`, `1 h`  
+* Optional: **MaxAge** - defaults to 0 seconds which means that on every read request from the OPC UA client to the OPC UA server, the server will try to get a new value from the downstream device or data source. If the value is larger than 0 seconds then a cached value may be returned if it is not older than MaxAge. Uses the same `Duration` formats as **Timeout**.
 * Optional: **ExcludeUnderscoreNodes** - defaults to true which means that tags that have a name starting with an underscore character, will be excluded when browsing for tags.
+* Optional: **BrowseRoot_ID** - NodeId to use as the browse root. Defaults to the OPC UA Objects folder.
+* Optional: **BrowseRoot_Name** - display name used as the browse root label. Defaults to "Objects".
+* Optional: **AutoCreateDataItems** - defaults to "false". If enabled, the adapter periodically browses for new variables and auto-creates DataItems that are not yet configured. Discovered items are created as read-only (Read=true, Write=false), with ID and Address set to the NodeId.
+* Optional: **AutoCreateDataItems_RootNode** - defaults to "Objects". Valid values are "Objects", "Views", or an explicit NodeId string. This is the starting node for auto-discovery.
+* Optional: **AutoCreateDataItems_MaxDepth** - defaults to 20. Limits recursive browsing depth for auto-discovery.
+* Optional: **AutoCreateDataItems_ExcludeNamespaces** - defaults to "0". Comma-separated list of namespace indices to skip during auto-discovery.
+* Optional: **AutoCreateDataItems_BrowseInterval** - defaults to "5 min". Interval between auto-discovery runs.
 
 ![Screenshot of OPC UA adapter configuration](UA.png)
 
 ## Configuring DataItems
 
-When adding DataItems to the OPC UA adapter, you can use the **Browse** button next to the **Address** property to view all tags provided by the OPC UA server. When the address space of the OPC UA server is very large, it may take several minutes on first opening the Browse dialog. 
+When adding DataItems to the OPC UA adapter, you can use the **Browse** button next to the **Address** property to view all tags provided by the OPC UA server. When the address space of the OPC UA server is very large, it may take several minutes on first opening the Browse dialog.
+If browsing takes longer than a few seconds, the result is cached for 30 minutes to speed up subsequent browsing.
 In the root folder of the ifakFAST installation, a file called "Browse_OPC_UA.txt" is stored containing all browsed tag addresses.
+
+Addresses can be specified either as explicit NodeId strings (e.g. `ns=2;s=MyDevice.Tag1`, `ns=2;i=12541`) or as browse paths that start with `Objects/` or `Views/`, matching the browse tree (e.g. `Objects/2:MyDevice/2:Tag1`).
 
 ![Screenshot of Browse dialog](UA_Browse.png)

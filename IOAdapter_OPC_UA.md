@@ -7,9 +7,11 @@
 
   If the OPC UA server is located on the same machine as the ifakFAST installation then hostname can simply be "localhost" or "127.0.0.1". The port number is typically 4840, 48010 or 49380.
 
+  You can use the **Browse** button next to the **Address** property to list the OPC UA servers that are registered at the Local Discovery Server (LDS) of the ifakFAST machine (`opc.tcp://localhost:4840`). If no LDS is running, the list is empty and the address must be entered manually.
+
 * If the OPC UA server requires **authentication using username and password**, you need to provide this information in the **Login** section
 * If the OPC UA server requires **authentication using a X509 certificate**, you need to add the ifakFAST "Mediator.IO.OPC_UA" certificate to the list of trusted certificates on the OPC UA server side. How this is done exactly, depends on the particular OPC UA server implementation. To make the "Mediator.IO.OPC_UA" certificate available on the OPC UA server side, you need to first try to connect to the OPC UA server. During this initial connection, the "Mediator.IO.OPC_UA" certificate is transmitted to the OPC UA server and stored in the untrusted list of certificates.
-* Optional: **Security** - defaults to "None" (no encryption). You can enforce a specific security policy for communication by using the Config setting "Security" with any value from the following list:
+* Optional: **Security** - defaults to "None" (no encryption). You can enforce a specific security policy for communication by using the Config setting "Security" (alternatively "SecurityPolicy"; if both are given, "Security" takes precedence) with any value from the following list:
   - Any
   - None
   - Basic128Rsa15
@@ -20,9 +22,15 @@
   - Aes256_Sha256_RsaPss
 
   If you use the value "Any", then the most secure communication policy supported by the OPC UA server will be used automatically.
+
+  On connect, the adapter queries the endpoints offered by the server (endpoint discovery) and selects, among the endpoints matching the security policy and accepting the login type in use (anonymous, username/password or certificate), the one with the highest security level. If no endpoint matches, the error message lists the available security policies and login types.
+* Optional: **EndpointUrlSource** - defaults to "Configured". Determines which URL is used for the session after endpoint discovery:
+  - **Configured**: the configured **Address** is used.
+  - **Discovered**: the endpoint URL reported by the server is used (falls back to the configured Address if the server reports an empty URL).
+  - **Combined**: scheme, host and port are taken from the configured **Address**, the path from the endpoint URL reported by the server. This is useful if the server reports a host name that is not reachable from the ifakFAST machine and the session endpoint has a different path than the discovery endpoint (e.g. Ignition: discovery at `opc.tcp://host:62541/discovery`, session at `opc.tcp://host:62541`).
 * Optional: **PkiDir** - You can specify a specific folder for storing the ifakFAST Mediator certificate, e.g. "./Config/OPC_UA_PKI". Otherwise, C:\\Users\\{UserName\}\\AppData\\Local\\ifakFAST.IO.OPC_UA\\pki will be used on Windows. The client certificate is stored under `PkiDir\\own\\certs`.
 * Optional: **ValidateRemoteCertificates** - defaults to "false". If set to "true", remote server certificates must be trusted in the local PKI store. If "false", remote certificates are accepted automatically.
-* Optional: **LogLevel** - If you have trouble connecting, you may want to set the LogLevel to "Debug" or even "Trace". You can find the logged information in folder "Data\Logfile.log".
+* Optional: **LogLevel** - If you have trouble connecting, you may want to set the LogLevel to "Debug" or even "Trace". You can find the logged information in folder "Data\Logfile.log". The discovered endpoints (URL, security mode, security policy, accepted login types, server certificate size) and the selected endpoint are logged on the initial connection attempt. With LogLevel "Debug" or "Trace", this information is logged on every reconnect attempt as well.
 * Optional: **Timeout** - defaults to 15 seconds. You may want to increase this value if the downstream communication of the OPC UA server is very slow. The value is a `Duration` and can be specified in any of these formats: `15 s`, `2 min`, `1 h`  
 * Optional: **MaxAge** - defaults to 0 seconds which means that on every read request from the OPC UA client to the OPC UA server, the server will try to get a new value from the downstream device or data source. If the value is larger than 0 seconds then a cached value may be returned if it is not older than MaxAge. Uses the same `Duration` formats as **Timeout**.
 * Optional: **ExcludeUnderscoreNodes** - defaults to true which means that tags that have a name starting with an underscore character, will be excluded when browsing for tags.
@@ -33,6 +41,8 @@
 * Optional: **AutoCreateDataItems_MaxDepth** - defaults to 20. Limits recursive browsing depth for auto-discovery.
 * Optional: **AutoCreateDataItems_ExcludeNamespaces** - defaults to "0". Comma-separated list of namespace indices to skip during auto-discovery.
 * Optional: **AutoCreateDataItems_BrowseInterval** - defaults to "5 min". Interval between auto-discovery runs.
+
+Config setting names are case sensitive. Unknown config settings are ignored and cause a warning, including a hint if the name differs from a supported setting only in upper/lower case (e.g. "timeout" instead of "Timeout").
 
 ![Screenshot of OPC UA adapter configuration](UA.png)
 
